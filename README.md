@@ -4,7 +4,7 @@ Build and distribute AI agent apps that run on the user's existing Claude, Gemin
 
 Define your agent's identity, permissions, constraints, memory, and welcome flow in a handful of `.md` files. Ship it as a ZIP or a platform installer. Users open it in any supported agent CLI on a desktop OS. The agent introduces itself, creates a desktop shortcut, and just works.
 
-**See it in action:** [ToneAI](https://github.com/steve-krisjanovs/toneai-nux-qr-ironbound) · [Chef Remy](https://github.com/cordfuse/ironbound-chefremy)
+**See it in action:** [ToneAI](https://github.com/steve-krisjanovs/toneai-nux-qr-imprint) · [Chef Remy](https://github.com/cordfuse/imprint-chefremy)
 
 **Fork this repo to build your own.**
 
@@ -32,7 +32,7 @@ Define your agent's identity, permissions, constraints, memory, and welcome flow
 IronBound requires a CLI agent with local filesystem access. Chat interfaces — web, mobile, and desktop — are **not viable distribution targets**. Tested 2026-05-04:
 
 **Desktop chat apps:**
-- **Claude Desktop (Chat / Cowork / Projects):** Hardened against persona injection. Chat and Cowork modes refuse pipe install and flag IRONBOUND.md as a jailbreak vector. Cowork has a locked system prompt that cannot be overridden. Projects mode doesn't recursively load subdirectory files so `ironbound/*.md` never enters context.
+- **Claude Desktop (Chat / Cowork / Projects):** Hardened against persona injection. Chat and Cowork modes refuse pipe install and flag IMPRINT.md as a jailbreak vector. Cowork has a locked system prompt that cannot be overridden. Projects mode doesn't recursively load subdirectory files so `imprint/*.md` never enters context.
 - **ChatGPT Desktop:** Sandboxed — no local network or filesystem access.
 - **Gemini Desktop:** Requires manually seeding each new project with the ZIP and a prompt. Not viable as a recurring tool.
 
@@ -50,32 +50,32 @@ If you're shipping an IronBound app, target CLI agents only. Direct users who ca
 ### Fork and Customize
 
 1. Fork this repo
-2. Edit files in `./ironbound/` to define your agent
+2. Edit files in `./imprint/` to define your agent
 3. Say `guide` on first dev session — the agent walks you through setup step by step
 4. Say `demo` to test user mode — builds and launches the locked persona in a new terminal
 5. Tag a release (`v$(cat version.txt)`) — CI builds and publishes a ZIP
 
-Dev mode is implicit — if you're in the repo with `IRONBOUND-DEV.md`, you're in dev mode. No setup needed.
+Dev mode is implicit — if you're in the repo with `IMPRINT-DEV.md`, you're in dev mode. No setup needed.
 
 ### How It Works
 
-- **During development**, agent files point to `IRONBOUND-DEV.md` — no persona constraints while coding
+- **During development**, agent files point to `IMPRINT-DEV.md` — no persona constraints while coding
 - **At build time**, `src/build.js` strips dev mode, generates agent files and checksums
-- **In production**, the user's agent reads `IRONBOUND.md` → `ironbound/*.md` — locked persona, scoped permissions
-- **Memory** persists to `~/.ironbound/{app-name}/` — not the agent's native memory system
+- **In production**, the user's agent reads `IMPRINT.md` → `imprint/*.md` — locked persona, scoped permissions
+- **Memory** persists to `~/.imprint/{app-name}/` — not the agent's native memory system
 
 ### Project Structure
 
 ```
-IRONBOUND-USER.md      # Engine — loads ./ironbound/, stripped in release builds
-IRONBOUND-DEV.md       # Dev workflow — build, test, spawn agent CLI
+IMPRINT-USER.md      # Engine — loads ./imprint/, stripped in release builds
+IMPRINT-DEV.md       # Dev workflow — build, test, spawn agent CLI
 DEV-GUIDE.md           # Guided first-time setup walkthrough
-CLAUDE.md              # One-liner → IRONBOUND-DEV.md (dev) or IRONBOUND.md (release)
+CLAUDE.md              # One-liner → IMPRINT-DEV.md (dev) or IMPRINT.md (release)
 GEMINI.md              # Same
 AGENTS.md              # Same
 .windsurfrules         # Same
 .clinerules            # Same
-ironbound/
+imprint/
   IDENTITY.md          # Agent name, personality, tone
   PERMISSIONS.md       # Whitelist of permitted operations
   CONSTRAINTS.md       # Exhaustive blacklist
@@ -93,11 +93,11 @@ examples/              # Example apps (recipe-box, os-manager, code-assistant)
 version.txt            # Single source of truth for version
 ```
 
-> **Template placeholders:** `[Your App Name]` and `[Your Company]` in the ironbound/ files are meant to be replaced when you fork. They are intentional — this is a template.
+> **Template placeholders:** `[Your App Name]` and `[Your Company]` in the imprint/ files are meant to be replaced when you fork. They are intentional — this is a template.
 
 ### User-mode tooling
 
-User-mode scripts can be **Node.js/TypeScript** or **Python**. If Node.js is missing, IronBound installs a portable copy to `~/.ironbound/node/` (no sudo/UAC). The build script handles `npm install` automatically.
+User-mode scripts can be **Node.js/TypeScript** or **Python**. If Node.js is missing, IronBound installs a portable copy to `~/.imprint/node/` (no sudo/UAC). The build script handles `npm install` automatically.
 
 ---
 
@@ -107,11 +107,11 @@ Apps built on IronBound:
 
 | App | Description |
 |---|---|
-| [ToneAI](https://github.com/steve-krisjanovs/toneai-nux-qr-ironbound) | AI guitar tone assistant — NUX MightyAmp QR presets for any song, album, or artist |
-| [Chef Remy](https://github.com/cordfuse/ironbound-chefremy) | AI recipe assistant — weather-aware, taste memory, cookbook PDFs |
+| [ToneAI](https://github.com/steve-krisjanovs/toneai-nux-qr-imprint) | AI guitar tone assistant — NUX MightyAmp QR presets for any song, album, or artist |
+| [Chef Remy](https://github.com/cordfuse/imprint-chefremy) | AI recipe assistant — weather-aware, taste memory, cookbook PDFs |
 
 *Built something with IronBound? Open a PR to add it here.*
 
 ---
 
-<sub>[IronBound](https://github.com/cordfuse/ironbound) is maintained by [Cordfuse](https://github.com/cordfuse).</sub>
+<sub>[IronBound](https://github.com/cordfuse/imprint) is maintained by [Cordfuse](https://github.com/cordfuse).</sub>

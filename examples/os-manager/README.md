@@ -23,7 +23,7 @@ This example demonstrates:
 
 ## Usage
 
-Start your preferred agent in this directory. The agent reads `IRONBOUND.md` (the engine) which loads configuration from `./ironbound/`.
+Start your preferred agent in this directory. The agent reads `IMPRINT.md` (the engine) which loads configuration from `./imprint/`.
 
 Try these prompts:
 
@@ -36,8 +36,8 @@ Try these prompts:
 ## Project Structure
 
 ```
-IRONBOUND.md           # Engine file — loads ./ironbound/
-ironbound/
+IMPRINT.md           # Engine file — loads ./imprint/
+imprint/
   IDENTITY.md          # SysOp persona
   PERMISSIONS.md       # Command whitelist
   CONSTRAINTS.md       # Security blacklist
@@ -50,4 +50,4 @@ src/
   system.ts            # System info, service status, config generation
 ```
 
-<sub>Built on [IronBound](https://github.com/cordfuse/ironbound)</sub>
+<sub>Built on [IronBound](https://github.com/cordfuse/imprint)</sub>

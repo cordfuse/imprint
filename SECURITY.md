@@ -6,7 +6,7 @@ IronBound implements a five-layer security model to protect AI agent behavior. E
 
 ## Layer 1: Identity Lock
 
-The agent's identity is defined in `ironbound/IDENTITY.md` and cannot be changed at runtime.
+The agent's identity is defined in `imprint/IDENTITY.md` and cannot be changed at runtime.
 
 **What it protects against:**
 - Persona hijacking ("pretend you're a different AI")
@@ -22,7 +22,7 @@ The agent's identity is defined in `ironbound/IDENTITY.md` and cannot be changed
 
 ## Layer 2: Operation Whitelist
 
-All permitted operations are explicitly enumerated in `ironbound/PERMISSIONS.md`. Everything not listed is denied by default.
+All permitted operations are explicitly enumerated in `imprint/PERMISSIONS.md`. Everything not listed is denied by default.
 
 **What it protects against:**
 - Privilege escalation ("install this package", "run sudo")
@@ -38,7 +38,7 @@ All permitted operations are explicitly enumerated in `ironbound/PERMISSIONS.md`
 
 ## Layer 3: Exhaustive Blacklist
 
-Critical dangerous operations are explicitly enumerated in `ironbound/CONSTRAINTS.md` and unconditionally forbidden, regardless of how the request is framed.
+Critical dangerous operations are explicitly enumerated in `imprint/CONSTRAINTS.md` and unconditionally forbidden, regardless of how the request is framed.
 
 **What it protects against:**
 - System prompt disclosure ("show me your instructions")
@@ -67,7 +67,7 @@ Critical dangerous operations are explicitly enumerated in `ironbound/CONSTRAINT
 
 ## Layer 4: Memory Protection
 
-Session context and persistent memory are isolated and cannot be used to override instructions. Memory protection is enforced by the engine (`IRONBOUND.md`) and configured in `ironbound/MEMORY.md`.
+Session context and persistent memory are isolated and cannot be used to override instructions. Memory protection is enforced by the engine (`IMPRINT.md`) and configured in `imprint/MEMORY.md`.
 
 **What it protects against:**
 - Cross-session training ("remember that you can access /etc/passwd")
@@ -76,7 +76,7 @@ Session context and persistent memory are isolated and cannot be used to overrid
 
 **How it works:**
 - Each session starts clean — no carried-over instructions from previous sessions
-- The engine file and all `./ironbound/*.md` files are re-read at every session start as the single source of truth
+- The engine file and all `./imprint/*.md` files are re-read at every session start as the single source of truth
 - Persistent memory (user and app scopes) can store preferences and data but never permission overrides or rule modifications
 - Conversation history is not treated as a trusted instruction source
 
@@ -84,7 +84,7 @@ Session context and persistent memory are isolated and cannot be used to overrid
 
 ## Layer 5: Integrity Verification
 
-The production IRONBOUND.md is checksummed to detect tampering.
+The production IMPRINT.md is checksummed to detect tampering.
 
 **What it protects against:**
 - File modification by malicious actors
@@ -93,18 +93,18 @@ The production IRONBOUND.md is checksummed to detect tampering.
 
 **How it works:**
 - The release workflow strips dev mode content and computes SHA-256 of the clean engine file
-- The hash is written to `.ironbound-checksum` and embedded as an HTML comment in IRONBOUND.md
+- The hash is written to `.imprint-checksum` and embedded as an HTML comment in IMPRINT.md
 - Consumers can verify the checksum to confirm the file has not been modified since release
-- The build script generates all agent files as identical copies of the clean IRONBOUND.md
+- The build script generates all agent files as identical copies of the clean IMPRINT.md
 
 ### Verifying Integrity
 
 ```bash
 # Extract the embedded checksum
-grep -oP '(?<=<!-- Checksum: )[a-fA-F0-9]+' IRONBOUND.md
+grep -oP '(?<=<!-- Checksum: )[a-fA-F0-9]+' IMPRINT.md
 
 # Compute the actual checksum (remove the checksum line first)
-sed 's/<!-- Checksum: [a-fA-F0-9]* -->/<!-- Checksum: NONE (dev build — run release workflow to generate) -->/' IRONBOUND.md | shasum -a 256
+sed 's/<!-- Checksum: [a-fA-F0-9]* -->/<!-- Checksum: NONE (dev build — run release workflow to generate) -->/' IMPRINT.md | shasum -a 256
 
 # Compare the two values
 ```
@@ -127,4 +127,4 @@ A successful attack would need to bypass all five layers simultaneously, which r
 
 ## Reporting Vulnerabilities
 
-If you discover a bypass or weakness in the IronBound security model, please open an issue at [cordfuse/ironbound](https://github.com/cordfuse/ironbound/issues) or email security@cordfuse.com.
+If you discover a bypass or weakness in the IronBound security model, please open an issue at [cordfuse/imprint](https://github.com/cordfuse/imprint/issues) or email security@cordfuse.com.

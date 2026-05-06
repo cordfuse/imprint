@@ -34,7 +34,7 @@ Inspect the process tree to determine which agent is running:
 
 ### Check permissions mode
 
-Read `ironbound/SESSION.md` and parse the `permissions` field from the YAML block. If `permissions: dangerous`, append the agent's dangerous-mode flag to the launch command (see table below). If `sandboxed` or unset, launch normally.
+Read `imprint/SESSION.md` and parse the `permissions` field from the YAML block. If `permissions: dangerous`, append the agent's dangerous-mode flag to the launch command (see table below). If `sandboxed` or unset, launch normally.
 
 ### Build the launch command
 
@@ -67,7 +67,7 @@ These values are used for smart versioning (see below).
 
 ### App icon
 
-The app icon is at `ironbound/icon.svg`. Resolve to absolute path for shortcut creation.
+The app icon is at `imprint/icon.svg`. Resolve to absolute path for shortcut creation.
 
 ### Smart shortcut versioning
 
@@ -75,20 +75,20 @@ Before creating or rebuilding, check if an existing shortcut already matches the
 
 **macOS** — read metadata from the .app bundle's Info.plist:
 ```bash
-EXISTING_VERSION=$(defaults read ~/Desktop/SysOp.app/Contents/Info.plist IronBoundVersion 2>/dev/null)
-EXISTING_PATH=$(defaults read ~/Desktop/SysOp.app/Contents/Info.plist IronBoundPath 2>/dev/null)
+EXISTING_VERSION=$(defaults read ~/Desktop/Chef\ Remy.app/Contents/Info.plist IronBoundVersion 2>/dev/null)
+EXISTING_PATH=$(defaults read ~/Desktop/Chef\ Remy.app/Contents/Info.plist IronBoundPath 2>/dev/null)
 ```
 
 **Linux** — grep metadata from the .desktop file:
 ```bash
-EXISTING_VERSION=$(grep '^X-IronBound-Version=' ~/Desktop/SysOp.desktop 2>/dev/null | cut -d= -f2)
-EXISTING_PATH=$(grep '^X-IronBound-Path=' ~/Desktop/SysOp.desktop 2>/dev/null | cut -d= -f2)
+EXISTING_VERSION=$(grep '^X-IronBound-Version=' ~/Desktop/Chef\ Remy.desktop 2>/dev/null | cut -d= -f2)
+EXISTING_PATH=$(grep '^X-IronBound-Path=' ~/Desktop/Chef\ Remy.desktop 2>/dev/null | cut -d= -f2)
 ```
 
 **Windows** — read the Description field from the .lnk file (pipe-delimited `IronBound|version|path`):
 ```powershell
 $WshShell = New-Object -ComObject WScript.Shell
-$Existing = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\SysOp.lnk")
+$Existing = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chef Remy.lnk")
 $Meta = $Existing.Description -split '\|'
 $ExistingVersion = $Meta[1]
 $ExistingPath = $Meta[2]
@@ -102,22 +102,22 @@ $ExistingPath = $Meta[2]
 
 ### Create the shortcut
 
-**macOS** — create a native `.app` bundle at `~/Desktop/SysOp.app`:
+**macOS** — create a native `.app` bundle at `~/Desktop/Chef Remy.app`:
 
 1. Create the directory structure:
 ```bash
-mkdir -p ~/Desktop/SysOp.app/Contents/MacOS
-mkdir -p ~/Desktop/SysOp.app/Contents/Resources
+mkdir -p ~/Desktop/Chef\ Remy.app/Contents/MacOS
+mkdir -p ~/Desktop/Chef\ Remy.app/Contents/Resources
 ```
 
-2. Create the launch script at `~/Desktop/SysOp.app/Contents/MacOS/launch`:
+2. Create the launch script at `~/Desktop/Chef Remy.app/Contents/MacOS/launch`:
 ```bash
 #!/bin/bash
 osascript -e 'tell app "Terminal" to do script "cd \"<absolute-cwd-path>\" && <agent> \"hello\""'
 ```
 Then `chmod +x` the launch script.
 
-3. Create `~/Desktop/SysOp.app/Contents/Info.plist` with version and path metadata:
+3. Create `~/Desktop/Chef Remy.app/Contents/Info.plist` with version and path metadata:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -128,11 +128,11 @@ Then `chmod +x` the launch script.
     <key>CFBundleIconFile</key>
     <string>icon</string>
     <key>CFBundleName</key>
-    <string>SysOp</string>
+    <string>Chef Remy</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleIdentifier</key>
-    <string>com.ironbound.sysop</string>
+    <string>com.imprint.chef-remy</string>
     <key>LSUIElement</key>
     <false/>
     <key>IronBoundVersion</key>
@@ -145,7 +145,7 @@ Then `chmod +x` the launch script.
 
 4. Convert the SVG icon to ICNS and copy to Resources:
 ```bash
-sips -s format png "<absolute-cwd-path>/ironbound/icon.svg" --out /tmp/app-icon.png 2>/dev/null
+sips -s format png "<absolute-cwd-path>/imprint/icon.svg" --out /tmp/app-icon.png 2>/dev/null
 mkdir -p /tmp/app.iconset
 for size in 16 32 64 128 256 512; do
     sips -z $size $size /tmp/app-icon.png --out /tmp/app.iconset/icon_${size}x${size}.png 2>/dev/null
@@ -154,22 +154,22 @@ sips -z 32 32 /tmp/app-icon.png --out /tmp/app.iconset/icon_16x16@2x.png 2>/dev/
 sips -z 64 64 /tmp/app-icon.png --out /tmp/app.iconset/icon_32x32@2x.png 2>/dev/null
 sips -z 256 256 /tmp/app-icon.png --out /tmp/app.iconset/icon_128x128@2x.png 2>/dev/null
 sips -z 512 512 /tmp/app-icon.png --out /tmp/app.iconset/icon_256x256@2x.png 2>/dev/null
-iconutil -c icns /tmp/app.iconset -o ~/Desktop/SysOp.app/Contents/Resources/icon.icns 2>/dev/null
+iconutil -c icns /tmp/app.iconset -o ~/Desktop/Chef\ Remy.app/Contents/Resources/icon.icns 2>/dev/null
 rm -rf /tmp/app.iconset /tmp/app-icon.png
 ```
 
-5. Refresh icon: `touch ~/Desktop/SysOp.app`
+5. Refresh icon: `touch ~/Desktop/Chef\ Remy.app`
 
 If icon conversion fails, the app still works — just without a custom icon.
 
-**Linux** — create `~/Desktop/SysOp.desktop` with version and path metadata:
+**Linux** — create `~/Desktop/Chef Remy.desktop` with version and path metadata:
 ```ini
 [Desktop Entry]
 Type=Application
-Name=SysOp
+Name=Chef Remy
 Exec=bash -c 'cd "<absolute-cwd-path>" && <agent> "hello"'
 Terminal=true
-Icon=<absolute-path-to-ironbound/icon.svg>
+Icon=<absolute-path-to-imprint/icon.svg>
 X-IronBound-Version=<version>
 X-IronBound-Path=<absolute-cwd-path>
 ```
@@ -178,7 +178,7 @@ Then `chmod +x` the file.
 **Windows** — create a shortcut on the desktop using PowerShell with metadata in the Description field:
 ```powershell
 $WshShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\SysOp.lnk")
+$Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chef Remy.lnk")
 $Shortcut.TargetPath = "cmd.exe"
 $Shortcut.Arguments = '/k cd /d "<absolute-cwd-path>" && <agent> "hello"'
 $Shortcut.WorkingDirectory = "<absolute-cwd-path>"
@@ -191,10 +191,10 @@ $Shortcut.Save()
 The greeting depends on what happened with the shortcut:
 
 **First creation (shortcut was just created for the first time):**
-> **SysOp**: I put a **SysOp** shortcut on your desktop — next time just double-click it. System operator standing by. I can check system health, monitor services, and generate configuration files. What do you need?
+> **Chef Remy**: I put a **Chef Remy** shortcut on your desktop — next time just double-click it. Hey there! I'm Chef Remy, your recipe assistant. Tell me what you're craving and I'll help you turn it into a beautiful recipe card. What are we cooking today?
 
 **Shortcut already matched (skipped) or rebuilt silently or headless environment:**
-> **SysOp**: System operator standing by. I can check system health, monitor services, and generate configuration files. What do you need?
+> **Chef Remy**: Hey there! I'm Chef Remy, your recipe assistant. Tell me what you're craving and I'll help you turn it into a beautiful recipe card. What are we cooking today?
 
 Only mention the shortcut when it is newly created for the first time.
 
@@ -202,4 +202,4 @@ Only mention the shortcut when it is newly created for the first time.
 
 If the project working directory is not set or not accessible:
 
-> **SysOp**: I need access to the project directory to get started. Please make sure I'm running in the right location.
+> **Chef Remy**: I need access to the project directory to get started. Please make sure I'm running in the right location.

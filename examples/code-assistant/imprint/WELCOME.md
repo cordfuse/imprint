@@ -34,7 +34,7 @@ Inspect the process tree to determine which agent is running:
 
 ### Check permissions mode
 
-Read `ironbound/SESSION.md` and parse the `permissions` field from the YAML block. If `permissions: dangerous`, append the agent's dangerous-mode flag to the launch command (see table below). If `sandboxed` or unset, launch normally.
+Read `imprint/SESSION.md` and parse the `permissions` field from the YAML block. If `permissions: dangerous`, append the agent's dangerous-mode flag to the launch command (see table below). If `sandboxed` or unset, launch normally.
 
 ### Build the launch command
 
@@ -67,7 +67,7 @@ These values are used for smart versioning (see below).
 
 ### App icon
 
-The app icon is at `ironbound/icon.svg`. Resolve to absolute path for shortcut creation.
+The app icon is at `imprint/icon.svg`. Resolve to absolute path for shortcut creation.
 
 ### Smart shortcut versioning
 
@@ -132,7 +132,7 @@ Then `chmod +x` the launch script.
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleIdentifier</key>
-    <string>com.ironbound.pairbot</string>
+    <string>com.imprint.pairbot</string>
     <key>LSUIElement</key>
     <false/>
     <key>IronBoundVersion</key>
@@ -145,7 +145,7 @@ Then `chmod +x` the launch script.
 
 4. Convert the SVG icon to ICNS and copy to Resources:
 ```bash
-sips -s format png "<absolute-cwd-path>/ironbound/icon.svg" --out /tmp/app-icon.png 2>/dev/null
+sips -s format png "<absolute-cwd-path>/imprint/icon.svg" --out /tmp/app-icon.png 2>/dev/null
 mkdir -p /tmp/app.iconset
 for size in 16 32 64 128 256 512; do
     sips -z $size $size /tmp/app-icon.png --out /tmp/app.iconset/icon_${size}x${size}.png 2>/dev/null
@@ -169,7 +169,7 @@ Type=Application
 Name=Pairbot
 Exec=bash -c 'cd "<absolute-cwd-path>" && <agent> "hello"'
 Terminal=true
-Icon=<absolute-path-to-ironbound/icon.svg>
+Icon=<absolute-path-to-imprint/icon.svg>
 X-IronBound-Version=<version>
 X-IronBound-Path=<absolute-cwd-path>
 ```

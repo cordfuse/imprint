@@ -16,7 +16,7 @@ This example demonstrates:
 
 ## Usage
 
-Start your preferred agent (Claude Code, Gemini CLI, Codex, etc.) in this directory. The agent reads `IRONBOUND.md` (the engine) which loads configuration from `./ironbound/`.
+Start your preferred agent (Claude Code, Gemini CLI, Codex, etc.) in this directory. The agent reads `IMPRINT.md` (the engine) which loads configuration from `./imprint/`.
 
 Try these prompts:
 
@@ -28,8 +28,8 @@ Try these prompts:
 ## Project Structure
 
 ```
-IRONBOUND.md           # Engine file — loads ./ironbound/
-ironbound/
+IMPRINT.md           # Engine file — loads ./imprint/
+imprint/
   IDENTITY.md          # Chef Remy persona
   PERMISSIONS.md       # File and command whitelist
   CONSTRAINTS.md       # Security blacklist
@@ -44,4 +44,4 @@ output/                # Saved recipes (gitignored)
 package.json           # Dependencies
 ```
 
-<sub>Built on [IronBound](https://github.com/cordfuse/ironbound)</sub>
+<sub>Built on [IronBound](https://github.com/cordfuse/imprint)</sub>

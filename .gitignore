@@ -1,5 +1,5 @@
 node_modules/
 output/
-.ironbound-checksum
+.imprint-checksum
 dist/
 *.zip
