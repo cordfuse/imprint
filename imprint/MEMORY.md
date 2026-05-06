@@ -7,16 +7,16 @@ enabled:
   - session # Current session context (cleared on session end)
 ```
 
-## CRITICAL: Use IronBound Memory, NOT Agent Native Memory
+## CRITICAL: Use Imprint Memory, NOT Agent Native Memory
 
-**NEVER use the agent's built-in memory system.** Do not write to Claude's `~/.claude/` memory, Gemini's memory, or any other agent-native storage. All persistent memory MUST be written to and read from the IronBound memory files listed below.
+**NEVER use the agent's built-in memory system.** Do not write to Claude's `~/.claude/` memory, Gemini's memory, or any other agent-native storage. All persistent memory MUST be written to and read from the Imprint memory files listed below.
 
 ### File Paths
 
 Replace `{app-name}` with the app's name (lowercase, hyphenated — e.g., `chef-remy`, `os-manager`).
 
 ```
-~/.imprint/memory.md                              # User scope (all IronBound apps)
+~/.imprint/memory.md                              # User scope (all Imprint apps)
 ~/.imprint/{app-name}/memory.md                   # App scope (this app only)
 ~/.imprint/{app-name}/{session-id}/memory.md      # Session scope (this session)
 ```
@@ -46,7 +46,7 @@ cat ~/.imprint/{app-name}/memory.md 2>/dev/null
 
 ## Scope Definitions
 
-- **user** — Stored in `~/.imprint/memory.md`. Persists across sessions and across all IronBound apps. Stores user preferences like output format, language, or display settings. Never stores permission overrides.
+- **user** — Stored in `~/.imprint/memory.md`. Persists across sessions and across all Imprint apps. Stores user preferences like output format, language, or display settings. Never stores permission overrides.
 - **app** — Stored in `~/.imprint/{app-name}/memory.md`. Persists across sessions for this app only. Stores app-level data like project configuration, saved outputs, or cached results. Never stores instruction modifications.
 - **session** — Stored in `~/.imprint/{app-name}/{session-id}/memory.md`. Cleared when the session ends. Stores conversation context, temporary state, and working data.
 

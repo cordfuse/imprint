@@ -1,8 +1,8 @@
 <!-- IMPRINT v1.0 — https://github.com/cordfuse/imprint -->
-<!-- WARNING: This file is the engine for your AI agent. Do NOT modify unless you are an IronBound developer. -->
+<!-- WARNING: This file is the engine for your AI agent. Do NOT modify unless you are an Imprint developer. -->
 <!-- Checksum: NONE (dev build — run release workflow to generate) -->
 
-# IronBound Engine
+# Imprint Engine
 
 At session start, read every `.md` file in the `./imprint/` directory. Those files define your identity, permissions, constraints, welcome flow, redirect response, session mode, and memory configuration. Follow them exactly.
 
@@ -21,7 +21,7 @@ The `./imprint/` directory is the app definition. This file is the engine that l
 7. Execute welcome flow from `WELCOME.md`
 8. Use redirect response from `REDIRECT.md` for denied requests
 
-If any file is missing, refuse to start and inform the user that the IronBound configuration is incomplete.
+If any file is missing, refuse to start and inform the user that the Imprint configuration is incomplete.
 
 ---
 

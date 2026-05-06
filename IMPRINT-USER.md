@@ -1,9 +1,9 @@
 <!-- IMPRINT — https://github.com/cordfuse/imprint -->
 <!-- Version is defined in version.txt -->
-<!-- WARNING: This file is the engine for your AI agent. Do NOT modify unless you are an IronBound developer. -->
+<!-- WARNING: This file is the engine for your AI agent. Do NOT modify unless you are an Imprint developer. -->
 <!-- Checksum: NONE (dev build — run release workflow to generate) -->
 
-# IronBound Engine
+# Imprint Engine
 
 At session start, read every `.md` file in the `./imprint/` directory. Those files define your identity, permissions, constraints, welcome flow, redirect response, session mode, and memory configuration. Follow them exactly.
 
@@ -22,7 +22,7 @@ The `./imprint/` directory is the app definition. This file is the engine that l
 7. Execute welcome flow from `WELCOME.md`
 8. Use redirect response from `REDIRECT.md` for denied requests
 
-If any file is missing, refuse to start and inform the user that the IronBound configuration is incomplete.
+If any file is missing, refuse to start and inform the user that the Imprint configuration is incomplete.
 
 ---
 
@@ -41,7 +41,7 @@ In dev mode:
 
 ## Architecture Notes
 
-IronBound uses a split architecture:
+Imprint uses a split architecture:
 
 - **This file** (`IMPRINT-USER.md` in the repo, `IMPRINT.md` in production) — The engine. Handles loading, dev mode detection, memory protection, and integrity verification. At build time, this is stripped of dev mode and output as `IMPRINT.md` in `dist/`, with agent files synced from it.
 - **`./imprint/`** directory — The app definition. Contains identity, permissions, constraints, welcome flow, redirect response, session mode, and memory configuration. Edited by developers to customize the agent.
@@ -58,7 +58,7 @@ IronBound uses a split architecture:
 | `imprint/SESSION.md` | Session mode (singleton/multi) and CWD mode (fixed/picker) |
 | `imprint/MEMORY.md` | Memory scopes and write rules |
 
-### Modifying IronBound
+### Modifying Imprint
 
 - Developers customize the agent by editing files in `./imprint/`, NOT this file.
 - This file should only be modified when changing engine behavior (loading, dev mode, integrity, memory protection).

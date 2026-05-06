@@ -1,6 +1,6 @@
-# IronBound Developer Guide
+# Imprint Developer Guide
 
-This document covers everything you need to fork, customize, and deploy IronBound for your own AI agent.
+This document covers everything you need to fork, customize, and deploy Imprint for your own AI agent.
 
 ---
 
@@ -11,7 +11,7 @@ Your fork should be a **private repository**. The `IMPRINT.md` file in dev mode 
 To fork privately:
 
 1. Create a new private repo on GitHub
-2. Clone the IronBound template and push to your private repo:
+2. Clone the Imprint template and push to your private repo:
 
 ```bash
 git clone https://github.com/cordfuse/imprint.git my-agent
@@ -24,7 +24,7 @@ git push -u origin main
 
 ## Architecture: Engine + App Definition
 
-IronBound uses a split architecture:
+Imprint uses a split architecture:
 
 - **`IMPRINT.md`** — The engine. Handles loading the app definition, dev mode detection, memory protection, and integrity verification. Developers should rarely need to modify it.
 - **`./imprint/`** — The app definition. Contains focused files that define the agent's identity, permissions, constraints, and behavior. **This is where developers make their customizations.**
@@ -147,7 +147,7 @@ The agent prompts the user to select or confirm a working directory at session s
 
 ## Customization Checklist
 
-When forking IronBound for your agent, update these files in `./imprint/`:
+When forking Imprint for your agent, update these files in `./imprint/`:
 
 - [ ] **`IDENTITY.md`** — Agent name, company, purpose, personality
 - [ ] **`PERMISSIONS.md`** — Whitelist of allowed commands, file operations, network access, and tools

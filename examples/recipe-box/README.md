@@ -1,6 +1,6 @@
 # Recipe Box — Chef Remy
 
-An example IronBound agent that helps users discover, format, and save recipes as markdown files.
+An example Imprint agent that helps users discover, format, and save recipes as markdown files.
 
 ## Overview
 
@@ -44,4 +44,4 @@ output/                # Saved recipes (gitignored)
 package.json           # Dependencies
 ```
 
-<sub>Built on [IronBound](https://github.com/cordfuse/imprint)</sub>
+<sub>Built on [Imprint](https://github.com/cordfuse/imprint)</sub>

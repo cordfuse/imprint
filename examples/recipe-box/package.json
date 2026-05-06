@@ -1,7 +1,7 @@
 {
   "name": "recipe-box",
   "version": "0.0.0-see-version.txt",
-  "description": "Chef Remy — an IronBound recipe assistant example",
+  "description": "Chef Remy — an Imprint recipe assistant example",
   "main": "dist/formatter.js",
   "scripts": {
     "build": "tsc",

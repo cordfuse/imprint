@@ -1,6 +1,6 @@
 # Code Assistant — Pairbot
 
-An example IronBound agent for pair programming across multiple repositories.
+An example Imprint agent for pair programming across multiple repositories.
 
 ## Overview
 
@@ -50,4 +50,4 @@ src/
   summarise.ts         # Session tracking and markdown summary generation
 ```
 
-<sub>Built on [IronBound](https://github.com/cordfuse/imprint)</sub>
+<sub>Built on [Imprint](https://github.com/cordfuse/imprint)</sub>

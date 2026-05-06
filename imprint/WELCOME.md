@@ -147,17 +147,17 @@ Before creating or rebuilding, check if an existing shortcut already matches the
 
 **macOS** — read metadata from the .app bundle's Info.plist:
 ```bash
-EXISTING_VERSION=$(defaults read ~/Desktop/[Your\ App\ Name].app/Contents/Info.plist IronBoundVersion 2>/dev/null)
-EXISTING_PATH=$(defaults read ~/Desktop/[Your\ App\ Name].app/Contents/Info.plist IronBoundPath 2>/dev/null)
+EXISTING_VERSION=$(defaults read ~/Desktop/[Your\ App\ Name].app/Contents/Info.plist ImprintVersion 2>/dev/null)
+EXISTING_PATH=$(defaults read ~/Desktop/[Your\ App\ Name].app/Contents/Info.plist ImprintPath 2>/dev/null)
 ```
 
 **Linux** — grep metadata from the .desktop file:
 ```bash
-EXISTING_VERSION=$(grep '^X-IronBound-Version=' ~/Desktop/[Your\ App\ Name].desktop 2>/dev/null | cut -d= -f2)
-EXISTING_PATH=$(grep '^X-IronBound-Path=' ~/Desktop/[Your\ App\ Name].desktop 2>/dev/null | cut -d= -f2)
+EXISTING_VERSION=$(grep '^X-Imprint-Version=' ~/Desktop/[Your\ App\ Name].desktop 2>/dev/null | cut -d= -f2)
+EXISTING_PATH=$(grep '^X-Imprint-Path=' ~/Desktop/[Your\ App\ Name].desktop 2>/dev/null | cut -d= -f2)
 ```
 
-**Windows** — read the Description field from the .lnk file (pipe-delimited `IronBound|version|path`):
+**Windows** — read the Description field from the .lnk file (pipe-delimited `Imprint|version|path`):
 ```powershell
 $WshShell = New-Object -ComObject WScript.Shell
 $Existing = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\[Your App Name].lnk")
@@ -207,9 +207,9 @@ Then `chmod +x` the launch script.
     <string>com.imprint.[your-app-name]</string>
     <key>LSUIElement</key>
     <false/>
-    <key>IronBoundVersion</key>
+    <key>ImprintVersion</key>
     <string><version></string>
-    <key>IronBoundPath</key>
+    <key>ImprintPath</key>
     <string><absolute-cwd-path></string>
 </dict>
 </plist>
@@ -242,8 +242,8 @@ Name=[Your App Name]
 Exec=bash -c 'cd "<absolute-cwd-path>" && <agent> "hello"'
 Terminal=true
 Icon=<absolute-path-to-imprint/icon.svg>
-X-IronBound-Version=<version>
-X-IronBound-Path=<absolute-cwd-path>
+X-Imprint-Version=<version>
+X-Imprint-Path=<absolute-cwd-path>
 ```
 Then `chmod +x` the file.
 
@@ -254,7 +254,7 @@ $Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\[Your App Name].l
 $Shortcut.TargetPath = "cmd.exe"
 $Shortcut.Arguments = '/k cd /d "<absolute-cwd-path>" && <agent> "hello"'
 $Shortcut.WorkingDirectory = "<absolute-cwd-path>"
-$Shortcut.Description = "IronBound|<version>|<absolute-cwd-path>"
+$Shortcut.Description = "Imprint|<version>|<absolute-cwd-path>"
 $Shortcut.Save()
 ```
 

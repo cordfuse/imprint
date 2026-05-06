@@ -1,6 +1,6 @@
-# IronBound Security Model
+# Imprint Security Model
 
-IronBound implements a five-layer security model to protect AI agent behavior. Each layer is independent — a failure in one layer does not compromise the others.
+Imprint implements a five-layer security model to protect AI agent behavior. Each layer is independent — a failure in one layer does not compromise the others.
 
 ---
 
@@ -127,4 +127,4 @@ A successful attack would need to bypass all five layers simultaneously, which r
 
 ## Reporting Vulnerabilities
 
-If you discover a bypass or weakness in the IronBound security model, please open an issue at [cordfuse/imprint](https://github.com/cordfuse/imprint/issues) or email security@cordfuse.com.
+If you discover a bypass or weakness in the Imprint security model, please open an issue at [cordfuse/imprint](https://github.com/cordfuse/imprint/issues) or email security@cordfuse.com.

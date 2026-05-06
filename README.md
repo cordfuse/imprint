@@ -1,4 +1,4 @@
-# IronBound
+# Imprint
 
 Build and distribute AI agent apps that run on the user's existing Claude, Gemini, or OpenAI account. No API keys to set up. No extra costs to the developer or the user.
 
@@ -29,7 +29,7 @@ Define your agent's identity, permissions, constraints, memory, and welcome flow
 
 ### Not supported
 
-IronBound requires a CLI agent with local filesystem access. Chat interfaces — web, mobile, and desktop — are **not viable distribution targets**. Tested 2026-05-04:
+Imprint requires a CLI agent with local filesystem access. Chat interfaces — web, mobile, and desktop — are **not viable distribution targets**. Tested 2026-05-04:
 
 **Desktop chat apps:**
 - **Claude Desktop (Chat / Cowork / Projects):** Hardened against persona injection. Chat and Cowork modes refuse pipe install and flag IMPRINT.md as a jailbreak vector. Cowork has a locked system prompt that cannot be overridden. Projects mode doesn't recursively load subdirectory files so `imprint/*.md` never enters context.
@@ -41,7 +41,7 @@ IronBound requires a CLI agent with local filesystem access. Chat interfaces —
 - **ChatGPT web:** Safety layer rejects the persona-takeover pattern.
 - **Gemini web:** Emits a JSON output file instead of running as the agent.
 
-If you're shipping an IronBound app, target CLI agents only. Direct users who can't install a CLI to a hosted alternative — IronBound isn't the right shape for chat interfaces.
+If you're shipping an Imprint app, target CLI agents only. Direct users who can't install a CLI to a hosted alternative — Imprint isn't the right shape for chat interfaces.
 
 ---
 
@@ -97,21 +97,21 @@ version.txt            # Single source of truth for version
 
 ### User-mode tooling
 
-User-mode scripts can be **Node.js/TypeScript** or **Python**. If Node.js is missing, IronBound installs a portable copy to `~/.imprint/node/` (no sudo/UAC). The build script handles `npm install` automatically.
+User-mode scripts can be **Node.js/TypeScript** or **Python**. If Node.js is missing, Imprint installs a portable copy to `~/.imprint/node/` (no sudo/UAC). The build script handles `npm install` automatically.
 
 ---
 
 ## Showcase
 
-Apps built on IronBound:
+Apps built on Imprint:
 
 | App | Description |
 |---|---|
 | [ToneAI](https://github.com/steve-krisjanovs/toneai-nux-qr-imprint) | AI guitar tone assistant — NUX MightyAmp QR presets for any song, album, or artist |
 | [Chef Remy](https://github.com/cordfuse/imprint-chefremy) | AI recipe assistant — weather-aware, taste memory, cookbook PDFs |
 
-*Built something with IronBound? Open a PR to add it here.*
+*Built something with Imprint? Open a PR to add it here.*
 
 ---
 
-<sub>[IronBound](https://github.com/cordfuse/imprint) is maintained by [Cordfuse](https://github.com/cordfuse).</sub>
+<sub>[Imprint](https://github.com/cordfuse/imprint) is maintained by [Cordfuse](https://github.com/cordfuse).</sub>

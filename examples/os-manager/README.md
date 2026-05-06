@@ -1,6 +1,6 @@
 # OS Manager — SysOp
 
-An example IronBound agent for system administration and monitoring.
+An example Imprint agent for system administration and monitoring.
 
 ## Overview
 
@@ -50,4 +50,4 @@ src/
   system.ts            # System info, service status, config generation
 ```
 
-<sub>Built on [IronBound](https://github.com/cordfuse/imprint)</sub>
+<sub>Built on [Imprint](https://github.com/cordfuse/imprint)</sub>
