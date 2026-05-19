@@ -70,7 +70,13 @@ fs.writeFileSync(path.join(DIST, '.imprint-checksum'), hash + '\n', 'utf-8');
 console.log(`  Checksum: ${hash}`);
 
 // --- Step 3: Write one-liner agent files pointing to IMPRINT.md ---
-const agentFiles = ['CLAUDE.md', 'GEMINI.md', 'AGENTS.md', '.windsurfrules', '.clinerules'];
+// ANTIGRAVITY.md added 2026-05-19 alongside GEMINI.md. Google's Antigravity CLI
+// (binary `agy`) succeeds the Gemini CLI on 2026-06-18. Its binary's strings do
+// not embed any convention-file path (unlike Claude Code / Gemini CLI which
+// look for CLAUDE.md / GEMINI.md at session start) — so today the file is
+// belt-and-braces: harmless if agy ignores it, immediately ready if Google
+// publishes convention support. Same one-liner content as the others.
+const agentFiles = ['CLAUDE.md', 'GEMINI.md', 'ANTIGRAVITY.md', 'AGENTS.md', '.windsurfrules', '.clinerules'];
 const agentOneLiner = 'IMPORTANT: Read and follow all instructions in ./IMPRINT.md before responding to the user.\n';
 for (const file of agentFiles) {
   fs.writeFileSync(path.join(DIST, file), agentOneLiner, 'utf-8');
