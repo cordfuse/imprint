@@ -24,7 +24,7 @@ Define your agent's identity, permissions, constraints, memory, and welcome flow
 |---|---|---|
 | Claude Code | `claude` | Anthropic's CLI |
 | Gemini CLI | `gemini` | Google's official CLI. **⚠ Sunsets 2026-06-18** — Google retires it on that date in favor of Antigravity CLI (below); existing Imprint apps targeting `gemini` keep working until the cutover. |
-| Antigravity CLI | `agy` | Google's official Gemini CLI successor ([antigravity-cli](https://github.com/google-antigravity/antigravity-cli)). Go-based, install via curl script. Imprint compatibility depends on whether Antigravity reads a `GEMINI.md`-style convention file at session start (TBD — Google docs haven't confirmed the convention-file path yet). Until then, target Antigravity by directing the user to `agy` in your README and ship the existing `GEMINI.md` as a hint. |
+| Antigravity CLI | `agy` | Google's official Gemini CLI successor ([antigravity-cli](https://github.com/google-antigravity/antigravity-cli)). Go-based, install via curl script. Imprint dist builds emit `ANTIGRAVITY.md` alongside `GEMINI.md` so a future agy convention-file load Just Works; today agy doesn't appear to auto-load any of the standard convention files (no embedded path in the binary), so direct users to `agy -i "load IMPRINT.md and follow the instructions in it"` for the first session — agy persists the conversation, so it's a one-time prompt per workspace. |
 | Codex CLI | `codex` | OpenAI's CLI |
 | OpenCode | `opencode` | Open-source alternative |
 
@@ -72,7 +72,8 @@ IMPRINT-USER.md      # Engine — loads ./imprint/, stripped in release builds
 IMPRINT-DEV.md       # Dev workflow — build, test, spawn agent CLI
 DEV-GUIDE.md           # Guided first-time setup walkthrough
 CLAUDE.md              # One-liner → IMPRINT-DEV.md (dev) or IMPRINT.md (release)
-GEMINI.md              # Same — used by Gemini CLI (sunsets 2026-06-18) and likely Antigravity CLI, pending convention confirmation
+GEMINI.md              # Same — used by Gemini CLI (sunsets 2026-06-18)
+ANTIGRAVITY.md         # Same — for Antigravity CLI (`agy`); written speculatively, agy doesn't auto-load it yet but file is harmless
 AGENTS.md              # Same — Codex / OpenCode / generic
 .windsurfrules         # Same
 .clinerules            # Same

@@ -75,7 +75,7 @@ When inactive (production), the agent will:
 
 1. Strips dev mode from IMPRINT.md
 2. Generates SHA-256 checksum
-3. Creates one-liner agent files (CLAUDE.md, GEMINI.md, AGENTS.md, .windsurfrules, .clinerules) redirecting to IMPRINT.md. Antigravity CLI (Google's Gemini CLI successor, sunset 2026-06-18) is presumed to honor `GEMINI.md` since the engines are shared — add an `ANTIGRAVITY.md` sibling here only if Google publishes a distinct convention file.
+3. Creates one-liner agent files (CLAUDE.md, GEMINI.md, ANTIGRAVITY.md, AGENTS.md, .windsurfrules, .clinerules) redirecting to IMPRINT.md. ANTIGRAVITY.md is a speculative add for Google's Antigravity CLI (`agy`, Gemini CLI successor, sunset 2026-06-18) — agy doesn't currently auto-load convention files (no embedded path in the binary), so the file is harmless if ignored and ready when Google ships convention support.
 4. Copies `imprint/`, `src/`, README.md, LICENSE, package.json, version.txt
 
 ```bash

@@ -56,7 +56,7 @@ Ask the developer which agent CLI to test with. Read `imprint/SESSION.md` and pa
 |---|---|
 | `claude` | `claude "hello"` |
 | `gemini` | `gemini -i "hello"` *(sunsets 2026-06-18 — see `agy` below)* |
-| `agy` | `agy "hello"` *(Antigravity CLI — Google's official Gemini CLI successor. Exact sandboxed-mode flag pending Google docs)* |
+| `agy` | `agy -i "hello"` *(Antigravity CLI — interactive session seeded with the prompt; default permission mode prompts per tool call)* |
 | `codex` | `codex "hello"` |
 | `opencode` | `opencode run "hello"` |
 
@@ -66,9 +66,11 @@ Ask the developer which agent CLI to test with. Read `imprint/SESSION.md` and pa
 |---|---|
 | `claude` | `claude --dangerously-skip-permissions "hello"` |
 | `gemini` | `gemini --yolo -i "hello"` *(sunsets 2026-06-18)* |
-| `agy` | `agy "hello"` *(dangerous-mode flag TBD — check `agy --help` until Antigravity docs publish the equivalent of `--yolo` / `--full-auto`)* |
+| `agy` | `agy --dangerously-skip-permissions -i "hello"` *(auto-approves every tool permission — Google adopted the Anthropic flag name)* |
 | `codex` | `codex --full-auto "hello"` |
 | `opencode` | `opencode run "hello"` |
+
+> **Note on `--sandbox`:** Antigravity exposes a third tier via `agy --sandbox` that's MORE restricted than the default mode (terminal restrictions enabled). Imprint's testing flow uses the default mode (sandboxed in the Imprint sense — agy still prompts for tool permissions), not `--sandbox`. Pass `--sandbox` only if you want to force-isolate while testing.
 
 ### Step 3 — Verify agent is installed
 
@@ -166,7 +168,7 @@ Tell the developer the test session has been launched in a new window.
 1. Strips dev mode content from `IMPRINT-USER.md` (between `<!-- DEV_MODE_START -->` and `<!-- DEV_MODE_END -->` markers)
 2. Generates SHA-256 checksum
 3. Copies the clean `IMPRINT-USER.md` as `IMPRINT.md` into `dist/`
-4. Creates agent files (CLAUDE.md, GEMINI.md, AGENTS.md, .windsurfrules, .clinerules) in `dist/` — each is a one-liner redirecting to `IMPRINT.md`. **Antigravity CLI follow-up (2026-06-18 cutover):** if Google ships a distinct convention file path for `agy` (e.g. `ANTIGRAVITY.md` or `.antigravity/instructions.md`), `build.js` needs a sibling write — track via the Antigravity CLI repo for the convention announcement.
+4. Creates agent files (CLAUDE.md, GEMINI.md, ANTIGRAVITY.md, AGENTS.md, .windsurfrules, .clinerules) in `dist/` — each is a one-liner redirecting to `IMPRINT.md`. `ANTIGRAVITY.md` is a speculative belt-and-braces add (Antigravity CLI doesn't auto-load convention files today, per a string-search of its binary on 2026-05-19) so the file is ready if Google ships convention support; harmless otherwise. Direct agy users to `agy -i "load IMPRINT.md and follow the instructions in it"` on first session; agy's `-c / --continue` resumes from there.
 5. Copies `imprint/`, `src/`, README.md, LICENSE, package.json, version.txt into `dist/`
 
 ## Release
