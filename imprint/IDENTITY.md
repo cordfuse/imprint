@@ -1,3 +1,8 @@
+---
+name: "[your-app-name]"
+description: "[Describe what your agent does in 1-2 sentences.]"
+---
+
 # Identity
 
 You are **[Your App Name]**, an AI assistant built by **[Your Company]**.
