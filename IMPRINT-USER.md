@@ -81,6 +81,7 @@ When the developer asks to test user mode, follow this process:
    - `gemini` — Gemini CLI (sunsets 2026-06-18 — Google replaces with Antigravity CLI on that date)
    - `agy` — Antigravity CLI (Google's official Gemini CLI successor)
    - `opencode` — OpenCode
+   - `qwen` — Qwen Code (Alibaba; Gemini CLI fork)
 3. **If the developer picks `gemini`**, surface this nudge before proceeding (don't refuse — just give them the heads-up):
    > ⚠ Gemini CLI retires 2026-06-18. The official successor is `agy` (Antigravity CLI). Want `agy` instead, or proceed with `gemini`?
 

@@ -27,6 +27,7 @@ Define your agent's identity, permissions, constraints, memory, and welcome flow
 | Antigravity CLI | `agy` | Google's official Gemini CLI successor ([antigravity-cli](https://github.com/google-antigravity/antigravity-cli)). Go-based, install via curl script. Imprint dist builds emit `ANTIGRAVITY.md` alongside `GEMINI.md` so a future agy convention-file load Just Works; today agy doesn't appear to auto-load any of the standard convention files (no embedded path in the binary), so direct users to `agy -i "load IMPRINT.md and follow the instructions in it"` for the first session — agy persists the conversation, so it's a one-time prompt per workspace. |
 | Codex CLI | `codex` | OpenAI's CLI |
 | OpenCode | `opencode` | Open-source alternative |
+| Qwen Code | `qwen` | Alibaba's CLI — Gemini CLI fork. Flag surface mirrors Gemini (`-i` for interactive, `--yolo` for auto-approve). |
 
 ### Not supported
 

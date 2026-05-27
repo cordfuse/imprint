@@ -76,7 +76,7 @@ console.log(`  Checksum: ${hash}`);
 // look for CLAUDE.md / GEMINI.md at session start) — so today the file is
 // belt-and-braces: harmless if agy ignores it, immediately ready if Google
 // publishes convention support. Same one-liner content as the others.
-const agentFiles = ['CLAUDE.md', 'GEMINI.md', 'ANTIGRAVITY.md', 'AGENTS.md', '.windsurfrules', '.clinerules'];
+const agentFiles = ['CLAUDE.md', 'GEMINI.md', 'ANTIGRAVITY.md', 'AGENTS.md', 'QWEN.md', '.windsurfrules', '.clinerules'];
 const agentOneLiner = 'IMPORTANT: Read and follow all instructions in ./IMPRINT.md before responding to the user.\n';
 for (const file of agentFiles) {
   fs.writeFileSync(path.join(DIST, file), agentOneLiner, 'utf-8');
